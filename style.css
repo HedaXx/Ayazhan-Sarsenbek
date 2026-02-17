@@ -1,0 +1,16 @@
+/* Starter CSS to edit */
+body {
+    font-family: Arial, sans-serif;
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+#output {
+    margin-top: 20px;
+    font-weight: bold;
+}
