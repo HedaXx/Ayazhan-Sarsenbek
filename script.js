@@ -1,6 +1,34 @@
-// Starter JS
-// Steps for students to implement:
-// 1. Get user inputs
-// 2. Perform calculations
-// 3. Use if/else to classify results
-// 4. Display results in #output
+// Когда нажимают кнопку "Посчитать"
+document.getElementById("taxiForm").addEventListener("submit", function(event) {
+  event.preventDefault(); // не перезагружать страницу
+
+  // Берём значения из полей
+  let имя = document.getElementById("name").value;
+  let км = Number(document.getElementById("km").value);
+  let минуты = Number(document.getElementById("min").value);
+
+  // Проверяем, что ввели числа
+  if (имя === "" || isNaN(км) || isNaN(минуты)) {
+    alert("Введи имя и числа!");
+    return;
+  }
+
+  // Простая формула
+  let цена = 500 + (км * 100) + (минуты * 20);
+
+  // Простые условия (if/else)
+  let текст = "";
+  if (цена < 1500) {
+    текст = "Дёшево! 😊";
+  } else if (цена < 3000) {
+    текст = "Нормально, можно ехать 🚕";
+  } else {
+    текст = "Дороговато... Может пешком? 🚶";
+  }
+
+  // Показываем результат
+  document.getElementById("result").innerHTML = 
+    "<h2>Привет, " + имя + "!</h2>" +
+    "<p>Цена поездки: " + цена + " тг</p>" +
+    "<p>" + текст + "</p>";
+});
