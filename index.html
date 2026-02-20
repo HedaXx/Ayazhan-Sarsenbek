@@ -2,33 +2,27 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>inDrive Price Estimator — Алматы</title>
+  <title>Простой калькулятор такси</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
-    <h1>inDrive Калькулятор цены поездки (Алматы)</h1>
-    <p>Примерная рекомендованная цена — как в приложении. В реальности договаривайся с водителем!</p>
+    <h1>Сколько стоит поездка?</h1>
 
     <form id="taxiForm">
-      <label>Твоё имя:</label>
-      <input type="text" id="name" required placeholder="Например, happmend"><br><br>
+      <label>Имя:</label>
+      <input type="text" id="name" required><br><br>
 
       <label>Расстояние (км):</label>
-      <input type="number" id="distance" min="1" max="100" step="0.1" required placeholder="Например, 5.5"><br><br>
+      <input type="number" id="km" required min="1"><br><br>
 
-      <label>Время в пути (минуты):</label>
-      <input type="number" id="time" min="5" max="180" required placeholder="Например, 20"><br><br>
+      <label>Время (мин):</label>
+      <input type="number" id="min" required min="1"><br><br>
 
-      <label>
-        <input type="checkbox" id="night"> Ночь / пик (после 22:00 или сильные пробки)
-      </label><br><br>
-
-      <button type="submit">Посчитать цену inDrive</button>
+      <button type="submit">Посчитать</button>
     </form>
 
-    <div id="result" class="result"></div>
+    <div id="result"></div>
   </div>
 
   <script src="script.js"></script>
