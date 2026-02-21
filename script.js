@@ -1,45 +1,44 @@
 document.getElementById("ppiForm").addEventListener("submit", function(e) {
-  e.preventDefault(); // Prevent page reload
+  e.preventDefault();
 
-  // Get inputs
   let name = document.getElementById("name").value.trim();
   let delayHours = Number(document.getElementById("delayHours").value);
   let totalHours = Number(document.getElementById("totalHours").value);
 
-  // Validation
   if (!name || isNaN(delayHours) || isNaN(totalHours) || delayHours < 0 || totalHours <= 0 || delayHours > totalHours) {
-    alert("Please enter valid numbers: Delay hours >= 0, Total hours > 0, and Delay <= Total.");
+    alert("Please enter valid values:\n• Name not empty\n• Delay ≥ 0\n• Total > 0\n• Delay ≤ Total");
     return;
   }
 
-  // Calculate PPI
   let ppi = (delayHours / totalHours) * 100;
-  ppi = ppi.toFixed(1); // One decimal place
+  ppi = ppi.toFixed(1);
 
-  // Categories with if/else
   let category = "";
   let className = "";
   let message = "";
+
   if (ppi < 30) {
     category = "Low Delayer";
     className = "low";
-    message = "You're a productivity ninja! Keep it up! 🥷";
+    message = "You're basically a time wizard 🧙‍♂️ Keep melting those clocks the good way!";
   } else if (ppi < 70) {
     category = "Moderate Delayer";
     className = "medium";
-    message = "A bit of procrastination... but hey, tomorrow is another day! 😏";
+    message = "Classic student mode: half melt, half panic 😅 You got this... tomorrow?";
   } else {
     category = "High Delayer";
     className = "high";
-    message = "Procrastination pro! Time to beat those delays? ⏳";
+    message = "Master of melting time! ⏳ The clocks are crying... let's fix that!";
   }
 
-  // Output result
   document.getElementById("result").innerHTML = `
-    <h2>Hey, ${name}!</h2>
-    <p>Your PPI is <strong>${ppi}%</strong> — ${category}!</p>
+    <h2>Hey ${name.toUpperCase()}!</h2>
+    <p>Your PPI is <strong>${ppi}%</strong></p>
+    <p class="category-title">${category}</p>
     <p>${message}</p>
-    <p>Tip: Try starting tasks 5 mins earlier next time! 📅</p>
+    <p class="tip">Tip: Start 5 minutes earlier — watch the clocks stop melting! 🕰️</p>
   `;
-  document.getElementById("result").classList.add(className); // Add color class
+
+  // Remove old classes and add new one
+  document.getElementById("result").className = "result " + className;
 });
