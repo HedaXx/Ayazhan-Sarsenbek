@@ -1,38 +1,45 @@
-document.getElementById("taxiForm").addEventListener("submit", function(e) {
-  e.preventDefault();
+document.getElementById("ppiForm").addEventListener("submit", function(e) {
+  e.preventDefault(); // Prevent page reload
 
-  // Получаем значения
-  let имя = document.getElementById("name").value.trim();
-  let км = Number(document.getElementById("km").value);
-  let мин = Number(document.getElementById("min").value);
+  // Get inputs
+  let name = document.getElementById("name").value.trim();
+  let delayHours = Number(document.getElementById("delayHours").value);
+  let totalHours = Number(document.getElementById("totalHours").value);
 
-  // Проверка
-  if (!имя || isNaN(км) || isNaN(мин) || км < 1 || мин < 1) {
-    alert("Введи имя и нормальные числа > 0");
+  // Validation
+  if (!name || isNaN(delayHours) || isNaN(totalHours) || delayHours < 0 || totalHours <= 0 || delayHours > totalHours) {
+    alert("Please enter valid numbers: Delay hours >= 0, Total hours > 0, and Delay <= Total.");
     return;
   }
 
-  // Простая формула
-  let цена = 500 + (км * 100) + (мин * 20);
+  // Calculate PPI
+  let ppi = (delayHours / totalHours) * 100;
+  ppi = ppi.toFixed(1); // One decimal place
 
-  // Определяем категорию
-  let вердикт = "";
-  let класс = "";
-  if (цена < 1500) {
-    вердикт = "Дёшево! 😊";
-    класс = "good";
-  } else if (цена < 3000) {
-    вердикт = "Нормально, можно ехать 🚕";
-    класс = "ok";
+  // Categories with if/else
+  let category = "";
+  let className = "";
+  let message = "";
+  if (ppi < 30) {
+    category = "Low Delayer";
+    className = "low";
+    message = "You're a productivity ninja! Keep it up! 🥷";
+  } else if (ppi < 70) {
+    category = "Moderate Delayer";
+    className = "medium";
+    message = "A bit of procrastination... but hey, tomorrow is another day! 😏";
   } else {
-    вердикт = "Дороговато... Может другой вариант? 🚶";
-    класс = "warning";
+    category = "High Delayer";
+    className = "high";
+    message = "Procrastination pro! Time to beat those delays? ⏳";
   }
 
-  // Выводим результат
+  // Output result
   document.getElementById("result").innerHTML = `
-    <h2>Привет, ${имя}!</h2>
-    <p>Примерная цена: <strong>${цена} тг</strong></p>
-    <p class="${класс}">${вердикт}</p>
+    <h2>Hey, ${name}!</h2>
+    <p>Your PPI is <strong>${ppi}%</strong> — ${category}!</p>
+    <p>${message}</p>
+    <p>Tip: Try starting tasks 5 mins earlier next time! 📅</p>
   `;
+  document.getElementById("result").classList.add(className); // Add color class
 });
