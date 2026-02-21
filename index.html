@@ -4,72 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Простой калькулятор такси</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
-      margin: 0;
-      padding: 20px;
-      color: #333;
-    }
-    .container {
-      max-width: 420px;
-      margin: 0 auto;
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      text-align: center;
-    }
-    h1 {
-      color: #ff6200;
-      margin-bottom: 10px;
-      font-size: 24px;
-    }
-    label {
-      display: block;
-      margin: 15px 0 5px;
-      font-weight: bold;
-      text-align: left;
-    }
-    input {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      box-sizing: border-box;
-      font-size: 16px;
-    }
-    button {
-      width: 100%;
-      padding: 12px;
-      margin-top: 20px;
-      background-color: #ff6200;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      font-size: 17px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #e55a00;
-    }
-    #result {
-      margin-top: 25px;
-      padding: 20px;
-      background-color: #fffaf0;
-      border-radius: 8px;
-      min-height: 80px;
-      font-size: 17px;
-      line-height: 1.5;
-    }
-    .good    { background: #e6ffe6; color: #006400; }
-    .ok      { background: #fffacd; color: #8b4513; }
-    .warning { background: #fff3cd; color: #856404; }
-  </style>
+  <!-- Подключаем стили -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
   <div class="container">
     <h1>Сколько стоит поездка?</h1>
 
@@ -89,46 +27,7 @@
     <div id="result"></div>
   </div>
 
-  <script>
-    document.getElementById("taxiForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-
-      // Получаем значения
-      let имя = document.getElementById("name").value.trim();
-      let км   = Number(document.getElementById("km").value);
-      let мин  = Number(document.getElementById("min").value);
-
-      // Проверка
-      if (!имя || isNaN(км) || isNaN(мин) || км < 1 || мин < 1) {
-        alert("Введи имя и нормальные числа > 0");
-        return;
-      }
-
-      // Простая формула
-      let цена = 500 + (км * 100) + (мин * 20);
-
-      // Определяем категорию
-      let вердикт = "";
-      let класс = "";
-      if (цена < 1500) {
-        вердикт = "Дёшево! 😊";
-        класс = "good";
-      } else if (цена < 3000) {
-        вердикт = "Нормально, можно ехать 🚕";
-        класс = "ok";
-      } else {
-        вердикт = "Дороговато... Может другой вариант? 🚶";
-        класс = "warning";
-      }
-
-      // Выводим результат
-      document.getElementById("result").innerHTML = `
-        <h2>Привет, ${имя}!</h2>
-        <p>Примерная цена: <strong>${цена} тг</strong></p>
-        <p class="${класс}">${вердикт}</p>
-      `;
-    });
-  </script>
-
+  <!-- Подключаем JavaScript -->
+  <script src="script.js"></script>
 </body>
 </html>
