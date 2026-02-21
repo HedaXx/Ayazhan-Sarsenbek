@@ -1,30 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Procrastination Index Calculator</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Procrastination Percentage Index (PPI)</title>
+
+  <!-- Google Fonts: playful & bold -->
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Fredoka+One&display=swap" rel="stylesheet">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Fredoka+One&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background-image: url('https://thumbs.dreamstime.com/b/surreal-melting-clocks-eye-symbolize-time-distortion-landscape-features-giant-sky-year-prominently-displayed-424921354.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      font-family: 'Fredoka One', cursive;
+      color: #fff;
+      position: relative;
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      z-index: 1;
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      max-width: 520px;
+      margin: 40px auto;
+      padding: 35px;
+      background: rgba(30, 0, 60, 0.75);
+      border-radius: 24px;
+      border: 3px solid #ffea00;
+      box-shadow: 0 0 40px rgba(255, 234, 0, 0.6), inset 0 0 20px rgba(138, 43, 226, 0.4);
+      text-align: center;
+      backdrop-filter: blur(6px);
+    }
+
+    h1 {
+      font-family: 'Bangers', cursive;
+      font-size: 3.8rem;
+      line-height: 1;
+      margin: 0 0 15px;
+      color: #ffea00;
+      text-shadow: 
+        4px 4px 0 #c2185b,
+        -4px -4px 0 #2196f3,
+        0 0 30px #9c27b0;
+      letter-spacing: 2px;
+    }
+
+    .intro {
+      font-size: 1.3rem;
+      margin: 0 0 30px;
+      color: #e1bee7;
+      text-shadow: 2px 2px 6px #000;
+    }
+
+    label {
+      display: block;
+      margin: 20px 0 8px;
+      font-size: 1.4rem;
+      color: #ffea00;
+      text-shadow: 2px 2px 4px #000;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      font-size: 1.2rem;
+      border: 3px solid #ffea00;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.15);
+      color: white;
+      box-sizing: border-box;
+      transition: all 0.3s;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #ff4081;
+      box-shadow: 0 0 20px #ff4081;
+    }
+
+    button {
+      width: 100%;
+      padding: 18px;
+      margin-top: 30px;
+      font-family: 'Bangers', cursive;
+      font-size: 2rem;
+      background: linear-gradient(45deg, #ff1744, #ff9100);
+      color: white;
+      border: none;
+      border-radius: 16px;
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba(255, 23, 68, 0.6);
+      transition: all 0.4s;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+
+    button:hover {
+      transform: scale(1.08) rotate(2deg);
+      box-shadow: 0 15px 40px rgba(255, 23, 68, 0.9);
+    }
+
+    .result {
+      margin-top: 35px;
+      padding: 25px;
+      border-radius: 20px;
+      background: rgba(0, 0, 0, 0.6);
+      border: 3px dashed #ffea00;
+      font-size: 1.4rem;
+      line-height: 1.5;
+      min-height: 140px;
+      animation: glow 3s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { box-shadow: 0 0 15px #ffea00; }
+      to   { box-shadow: 0 0 40px #ff1744, 0 0 60px #9c27b0; }
+    }
+
+    .low    { background: rgba(76, 175, 80, 0.7); border-color: #4caf50; color: white; }
+    .medium { background: rgba(255, 193, 7, 0.7); border-color: #ffc107; color: #111; }
+    .high   { background: rgba(244, 67, 54, 0.7); border-color: #f44336; color: white; }
+  </style>
 </head>
 <body>
 
-<div class="overlay"></div>
-<div class="container">
-    <h1>Procrastination Index</h1>
-    <p class="intro">Calculate your procrastination percentage</p>
+  <div class="overlay"></div>
 
-    <form id="calculatorForm">
-        <label for="timeAvailable">Time Available to Work (hours):</label>
-        <input type="number" id="timeAvailable" placeholder="e.g., 8" min="0" step="0.5" required>
+  <div class="container">
+    <h1>PROCRASTINATION<br>PERCENTAGE INDEX</h1>
+    <p class="intro">How much are you melting your time? 😵‍💫</p>
 
-        <label for="timeProcrastinated">Time You Procrastinated (hours):</label>
-        <input type="number" id="timeProcrastinated" placeholder="e.g., 3" min="0" step="0.5" required>
+    <form id="ppiForm">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" placeholder="e.g., happmend" required>
 
-        <button type="submit">Calculate</button>
+      <label for="delayHours">Hours Spent Delaying</label>
+      <input type="number" id="delayHours" min="0" step="0.1" placeholder="e.g., 3.5" required>
+
+      <label for="totalHours">Total Time Allocated (hours)</label>
+      <input type="number" id="totalHours" min="0.1" step="0.1" placeholder="e.g., 8" required>
+
+      <button type="submit">CALCULATE MY PPI!</button>
     </form>
 
-    <div id="output"></div>
-</div>
+    <div id="result" class="result"></div>
+  </div>
 
-<script src="script.js"></script>
+  <script>
+    document.getElementById("ppiForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      let name = document.getElementById("name").value.trim();
+      let delayHours = Number(document.getElementById("delayHours").value);
+      let totalHours = Number(document.getElementById("totalHours").value);
+
+      if (!name || isNaN(delayHours) || isNaN(totalHours) || delayHours < 0 || totalHours <= 0 || delayHours > totalHours) {
+        alert("Please enter valid values:\n• Name not empty\n• Delay ≥ 0\n• Total > 0\n• Delay ≤ Total");
+        return;
+      }
+
+      let ppi = (delayHours / totalHours) * 100;
+      ppi = ppi.toFixed(1);
+
+      let category = "";
+      let className = "";
+      let message = "";
+
+      if (ppi < 30) {
+        category = "Low Delayer";
+        className = "low";
+        message = "You're basically a time wizard 🧙‍♂️ Keep melting those clocks the good way!";
+      } else if (ppi < 70) {
+        category = "Moderate Delayer";
+        className = "medium";
+        message = "Classic student mode: half melt, half panic 😅 You got this... tomorrow?";
+      } else {
+        category = "High Delayer";
+        className = "high";
+        message = "Master of melting time! ⏳ The clocks are crying... let's fix that!";
+      }
+
+      document.getElementById("result").innerHTML = `
+        <h2>Hey ${name.toUpperCase()}!</h2>
+        <p>Your PPI is <strong>${ppi}%</strong></p>
+        <p class="category-title">${category}</p>
+        <p>${message}</p>
+        <p class="tip">Tip: Start 5 minutes earlier — watch the clocks stop melting! 🕰️</p>
+      `;
+
+      document.getElementById("result").className = "result " + className;
+    });
+  </script>
+
 </body>
 </html>
