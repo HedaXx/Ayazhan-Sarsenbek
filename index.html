@@ -3,34 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Procrastination Percentage Index (PPI) Calculator</title>
-  <!-- Fun font from Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
-  <!-- Connect styles -->
+  <title>Procrastination Percentage Index (PPI)</title>
+  <!-- Fun font -->
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Fredoka+One&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="overlay"></div> <!-- for darkening the background -->
+
   <div class="container">
-    <h1>Procrastination Percentage Index (PPI) 😴</h1>
-    <p class="intro">Enter your details to see how much of a delayer you are! (Be honest... or delay answering?)</p>
+    <h1>PROCRASTINATION<br>PERCENTAGE INDEX</h1>
+    <p class="intro">How much are you melting your time? 😵‍💫</p>
 
     <form id="ppiForm">
-      <label for="name">Your Name:</label>
-      <input type="text" id="name" placeholder="e.g., Alex" required>
+      <label for="name">Your Name</label>
+      <input type="text" id="name" placeholder="e.g., happmend" required>
 
-      <label for="delayHours">Hours Spent Delaying:</label>
-      <input type="number" id="delayHours" min="0" step="0.1" placeholder="e.g., 2.5" required>
+      <label for="delayHours">Hours Spent Delaying</label>
+      <input type="number" id="delayHours" min="0" step="0.1" placeholder="e.g., 3.5" required>
 
-      <label for="totalHours">Total Time Allocated for Task (hours):</label>
-      <input type="number" id="totalHours" min="0.1" step="0.1" placeholder="e.g., 5" required>
+      <label for="totalHours">Total Time Allocated (hours)</label>
+      <input type="number" id="totalHours" min="0.1" step="0.1" placeholder="e.g., 8" required>
 
-      <button type="submit">Calculate My PPI! 🚀</button>
+      <button type="submit">CALCULATE MY PPI!</button>
     </form>
 
     <div id="result" class="result"></div>
   </div>
 
-  <!-- Connect JavaScript -->
   <script src="script.js"></script>
 </body>
 </html>
