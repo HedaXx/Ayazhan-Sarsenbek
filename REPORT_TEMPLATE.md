@@ -3,10 +3,11 @@
 ## 1. Project Overview
 
 **Project Name:**  
-Taxi Fare Calculator
+Procrastination Percentage Index (PPI) Calculator
 
 **What does your calculator do?**  
-This calculator calculates the approximate cost of a taxi ride in Almaty.The user enters their name, distance in kilometers, and approximate time in minutes. The program calculates the price using a simple formula and tells you whether the trip is cheap, normal, or expensive.  
+This calculator measures how much someone procrastinates by calculating the percentage of time spent delaying a task compared to the total time they had for it. It takes the hours spent procrastinating and divides them by the total allocated time, then shows the result as a percentage with a fun category (Low Delayer, Moderate Delayer, or High Delayer).  
+The goal is to make people aware of their procrastination habits in a light-hearted, motivating way.
 
 ---
 
@@ -14,93 +15,97 @@ This calculator calculates the approximate cost of a taxi ride in Almaty.The use
 
 List and explain all inputs you used.
 
-| Input Name     | Unit     | What it Represents                  | Example     |
-|----------------|----------|-------------------------------------|-------------|
-| Имя            | —        | Имя пользователя                    | Алишер      |
-| Расстояние     | км       | Длина поездки                       | 5.5         |
-| Время          | минуты   | Примерное время в пути              | 15          |
+| Input Name          | Unit   | What it Represents                          | Example     |
+|---------------------|--------|---------------------------------------------|-------------|
+| Your Name           | —      | User's name for personalized greeting       | Alex        |
+| Hours Spent Delaying| hours  | Time wasted before starting the task        | 2.5         |
+| Total Time Allocated| hours  | Total time planned for the task             | 5           |
 
 Explain in words:  
-I chose these three inputs because they are the most important for calculating the price of a taxi: name to make the greeting personal, distance and time because the price usually depends on them (as in InDrive or Yandex Go). Without distance and time, it is impossible to calculate the price, and the name makes the conclusion friendly.
+I chose these three inputs because name makes the result feel personal and friendly (like "Hey Alex!"), while the two time values are the core of the formula, they are measurable, realistic, and directly show procrastination (delay vs. available time). Without both time numbers, the percentage doesn't make sense.
 
 ---
 
 ## 3. Process (Calculation Logic)
 
 **Formula or Calculation Used:**  
-price = 500 + (distance × 100) + (time × 20)
+PPI = (Hours Spent Delaying / Total Time Allocated) × 100
 
 
 
 **Steps:**
-1. Get input values from HTML  
-2. I will convert distance and time into numbers using Number(...)
-3. I will calculate the price using the formula above
-4. Save the result to the let price variable
+1. Get input values from HTML form using document.getElementById(...).value
+2. Convert delay and total hours from text to numbers using Number(...)
+3. Perform calculation: ppi = (delayHours / totalHours) * 100
+4. Round to 1 decimal place with ppi.toFixed(1)
+5. Store result in variable let ppi
 
 ---
 
 ## 4. Conditional Logic (if / else)
 
-The program looks at the price and gives a verdict:
+The program interprets the PPI percentage like this:
 
-- If the price is < 1500 → "Cheap! 😊" (good class — green)
-- If the price is < 3000 → "OK, you can go 🚕" (ok class — yellow)
-- Otherwise → "Too expensive... Maybe another option? 🚶" (warning class — orange)
+- If PPI < 30% → "Low Delayer" (green style)  
+- If PPI < 70% → "Moderate Delayer" (yellow style)  
+- Otherwise → "High Delayer" (red style)
 
 Why these ranges? 
-I chose these borders myself because in Almaty a short trip (5 km, 10 minutes) usually costs 1000-1500 tenge, an average trip is up to 2500-3000 tenge, and a long trip or in traffic jams is more expensive. This is approximate, so that it is clear when the price seems favorable.
-
+I chose them myself based on intuition: under 30% means you mostly start on time (productive), 30–70% is typical student-level delay (moderate), over 70% means you spend most of your time procrastinating (high). No real scientific model — just fun categories to motivate people.
 
 ## 5. Output
 
 
 The program shows the user:
 
-- Personal greeting: "Hello, [name]!"
-- The calculated price: "Approximate price: 1300 tenge" (in bold)
-- The verdict with color: for example, "Cheap! ," in the green block
+- Personalized greeting: "Hey, [Name]!"
+- Calculated value: "Your PPI is 40.0% — Moderate Delayer!"
+- Category + interpretation with emoji: e.g., "A bit of procrastination... but hey, tomorrow is another day! 😏"
+- Extra tip: "Try starting tasks 5 mins earlier next time! 📅"
+- The result block changes color (green/yellow/red) depending on category
 
-Everything is displayed in a div with id="result" right on the page.
+Everything appears inside the #result div right after clicking the button.
 ---
 
 ## 6. Edge Cases / Unusual Inputs
 
 What happens if:
 
-- If the user has entered 0 or a negative number → alert ("Enter a name and normal numbers > 0") and nothing counts (return).
-- If you left the field empty → the same applies to alert.
-- If you entered letters instead of numbers → isNaN() catches it and shows alert.
-  
-The program doesn't crash, it just doesn't count and asks you to enter it correctly.
+- User enters zero for delay hours → PPI = 0% → shows "Low Delayer" (correct behavior)
+- User enters zero or negative for total hours → alert message and stops calculation
+- Delay hours > total hours → alert message ("Delay <= Total")
+- User leaves name or any field empty → alert message
+- User enters text instead of numbers → isNaN() catches it → alert
+
+The program never crashes — it always shows a friendly alert and stops.
 
 ---
 
 ## 7. Optional Features (If You Added Any)
 
-- I added emojis in my messages to make it more fun.
-- Made the button orange
+- Super fun and creative design: gradient background, pulsing button animation, fade-in & pop-in effects, Google Fonts ('Fredoka One'), emoji everywhere
+- Validation messages (alerts) for bad inputs
+- Dynamic color change of result box (green/yellow/red)
+- Motivational tip at the end
 ---
 
 ## 8. How to Run the Project
 
-1. Download the repository as ZIP or clone
-2. Open the file index.html in any browser (Chrome, Safari, etc.)
-3. Enter the name, distance, and time.
-4. Click the "Calculate price" button
-
+1. Download or clone the repository
+2. Open index.html in any browser (Chrome, Firefox, etc.)
+3. Enter your name, hours delaying, and total hours allocated
+4. Click "Calculate My PPI!" button
 --
 
 ## 9. AI Usage (If Used)
 
 Did you use AI tools?  
-Yes
+Yes (Grok by xAI)
 
 If yes, explain briefly:
-- I asked Grok to help with code examples: how to make a form in HTML, how to enable button processing (submit), how to output the result in div, how to write if/else for categories.
-- Grok gave me ready-made pieces of code (sometimes whole blocks), explained each line and helped me fix errors (for example, when I forgot e.preventDefault() and the page was reloaded).
-- I came up with the price formula myself (500 + 100 × km + 20 × min), ranges for the verdict (<1500 — cheap, <3000 — normal, otherwise — expensive), text messages and emojis.
-- I have tested the code in the browser many times: downloaded ZIP, opened index.html She entered numbers, looked at what wasn't working, and returned to Grok with questions like "why isn't she counting?" or "how to make the button orange."
+- I asked Grok to help create the calculator step-by-step: first ideas for PPI formula, then HTML form, CSS design (fun & creative), JavaScript logic (formula, if/else, output), splitting into 3 files, and explanations.
+- Grok gave me full code blocks and explained every line — I copied, tested in browser (downloaded ZIP each time), and asked follow-up questions like "why doesn't it work?", "how to add animation?", "make it more fun".
+- I chose the formula (delay / total × 100), ranges (<30%, <70%), messages, emojis, and category names myself.
 - I learned how to work on GitHub myself: I forked the repository, created a name-surname branch, edited files directly in the browser, committed changes, downloaded ZIP for the test. That was the hardest and coolest thing — I realized that you can write code on GitHub and immediately see the site.
 
 Now I partly understand every line: addEventListener catches the button click, preventDefault stops the reboot, Number() turns the text into a number, innerHTML inserts HTML into a div, if/else checks the conditions, and CSS makes everything beautiful.
@@ -111,4 +116,4 @@ Now I partly understand every line: addEventListener catches the button click, p
 
 This assignment was interesting. I learned how to work with GitHub: fork a repository, create a branch, edit files in the browser, commit, download ZIP and run the site locally, but i did not understand how it all connected before. 
 I realized that you can write code directly on the Internet, save it, test it, and you end up with a real working website. 
-it was scary and difficult at first ( the code seemed gray, nothing worked), but when i saw how the form calculates the price and shows the result. it was a wow moment. 
+it was scary and difficult at first ( the code seemed gray, nothing worked), but when i saw how the form calculates the procrastination and shows the result, it was a wow moment. 
