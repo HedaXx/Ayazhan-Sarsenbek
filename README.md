@@ -104,7 +104,7 @@ Yes (Grok by xAI)
 
 If yes, explain briefly:
 - I asked Grok to help create the calculator step-by-step: first ideas for PPI formula, then HTML form, CSS design (fun & creative), JavaScript logic (formula, if/else, output), splitting into 3 files, and explanations.
-- Grok gave me full code blocks and explained every line — I copied, tested in browser (downloaded ZIP each time), and asked follow-up questions like "why doesn't it work?", "how to add animation?", "make it more fun".
+- Grok gave me full code blocks and explained every line, I copied, tested in browser (downloaded ZIP each time), and asked follow-up questions like "why doesn't it work?", "how to add animation?", "make it more fun".
 - I chose the formula (delay / total × 100), ranges (<30%, <70%), messages, emojis, and category names myself.
 - I learned how to work on GitHub myself: I forked the repository, created a name-surname branch, edited files directly in the browser, committed changes, downloaded ZIP for the test. That was the hardest and coolest thing — I realized that you can write code on GitHub and immediately see the site.
 
