@@ -1,44 +1,36 @@
-document.getElementById("ppiForm").addEventListener("submit", function(e) {
-  e.preventDefault();
+// 1. Setup: Get elements from the HTML
+const calculateBtn = document.getElementById('calculate');
+const nameInput = document.getElementById('userName');
+const billInput = document.getElementById('bill');
+const tipInput = document.getElementById('tip');
 
-  let name = document.getElementById("name").value.trim();
-  let delayHours = Number(document.getElementById("delayHours").value);
-  let totalHours = Number(document.getElementById("totalHours").value);
+const greetingDisplay = document.getElementById('greeting');
+const totalDisplay = document.getElementById('totalAmount');
+const feedbackDisplay = document.getElementById('feedback');
 
-  if (!name || isNaN(delayHours) || isNaN(totalHours) || delayHours < 0 || totalHours <= 0 || delayHours > totalHours) {
-    alert("Please enter valid values:\n• Name not empty\n• Delay ≥ 0\n• Total > 0\n• Delay ≤ Total");
-    return;
-  }
+// 2. The Process: Function to run when button is clicked
+calculateBtn.addEventListener('click', function() {
+    // Get values from inputs
+    const name = nameInput.value;
+    const bill = parseFloat(billInput.value);
+    const tipPercent = parseFloat(tipInput.value);
 
-  let ppi = (delayHours / totalHours) * 100;
-  ppi = ppi.toFixed(1);
+    // Perform Calculation
+    const tipAmount = bill * (tipPercent / 100);
+    const total = bill + tipAmount;
 
-  let category = "";
-  let className = "";
-  let message = "";
+    // 3. Logic: Categorize the tip (if/else)
+    let category = "";
+    if (tipPercent < 10) {
+        category = "Budget - Every penny counts! 🪙";
+    } else if (tipPercent <= 20) {
+        category = "Standard - A solid tip. 👍";
+    } else {
+        category = "Generous - You're making someone's day! 🌟";
+    }
 
-  if (ppi < 30) {
-    category = "Low Delayer";
-    className = "low";
-    message = "You're basically a time wizard 🧙‍♂️ Keep melting those clocks the good way!";
-  } else if (ppi < 70) {
-    category = "Moderate Delayer";
-    className = "medium";
-    message = "Classic student mode: half melt, half panic 😅 You got this... tomorrow?";
-  } else {
-    category = "High Delayer";
-    className = "high";
-    message = "Master of melting time! ⏳ The clocks are crying... let's fix that!";
-  }
-
-  document.getElementById("result").innerHTML = `
-    <h2>Hey ${name.toUpperCase()}!</h2>
-    <p>Your PPI is <strong>${ppi}%</strong></p>
-    <p class="category-title">${category}</p>
-    <p>${message}</p>
-    <p class="tip">Tip: Start 5 minutes earlier — watch the clocks stop melting! 🕰️</p>
-  `;
-
-  // Remove old classes and add new one
-  document.getElementById("result").className = "result " + className;
+    // 4. Output: Display personalized results
+    greetingDisplay.innerText = `Hello, ${name}!`;
+    totalDisplay.innerText = `Total Bill: $${total.toFixed(2)}`;
+    feedbackDisplay.innerText = `Tip Category: ${category}`;
 });
