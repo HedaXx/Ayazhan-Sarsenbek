@@ -6,7 +6,9 @@
 Tip Calculator
 
 **What does your calculator do?**  
+
 This calculator helps you figure out tips at restaurants or cafes and see the total bill fast. Just enter your name, the bill amount, and the tip percentage you want to give. It figures out the tip and total, and then it tells you if your tip is Budget, Standard, or Generous with some fun comments. It solves that everyday problem of not having to think, What's 15% of 5000? and being able to pick the right tip amount.
+
 ---
 
 ## 2. Inputs
