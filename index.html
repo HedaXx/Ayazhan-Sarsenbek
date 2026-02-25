@@ -1,36 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Procrastination Percentage Index (PPI)</title>
-  <!-- Fun font -->
-  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Fredoka+One&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalized Tip Calculator</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="overlay"></div> <!-- for darkening the background -->
+    <div class="container">
+        <h1>Tip Calculator 💸</h1>
+        
+        <label for="userName">Your Name:</label>
+        <input type="text" id="userName" placeholder="Enter your name">
 
-  <div class="container">
-    <h1>PROCRASTINATION<br>PERCENTAGE INDEX</h1>
-    <p class="intro">How much are you melting your time? 😵‍💫</p>
+        <label for="bill">Bill Amount ($):</label>
+        <input type="number" id="bill" placeholder="0.00">
 
-    <form id="ppiForm">
-      <label for="name">Your Name</label>
-      <input type="text" id="name" placeholder="e.g., happmend" required>
+        <label for="tip">Tip Percentage (%):</label>
+        <input type="number" id="tip" placeholder="15">
 
-      <label for="delayHours">Hours Spent Delaying</label>
-      <input type="number" id="delayHours" min="0" step="0.1" placeholder="e.g., 3.5" required>
+        <button id="calculate">Calculate Total</button>
 
-      <label for="totalHours">Total Time Allocated (hours)</label>
-      <input type="number" id="totalHours" min="0.1" step="0.1" placeholder="e.g., 8" required>
-
-      <button type="submit">CALCULATE MY PPI!</button>
-    </form>
-
-    <div id="result" class="result"></div>
-  </div>
-
-  <script src="script.js"></script>
+        <div id="result">
+            <p id="greeting"></p>
+            <p id="totalAmount"></p>
+            <p id="feedback"></p>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
